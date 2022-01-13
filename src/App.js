@@ -4,17 +4,31 @@ import Navbar from './components/Navbar';
 import TextForm from './components/TextForm';
 import About from './About';
 import React,{useState} from 'react';
+import Alert from './components/Alert';
 let name = "Neha"
 function App() {
   const [mode, setMode] = useState("light")
+  const [alert, setalert] = useState(null)
+  const showAlert = (message, type)=>{
+    setalert({
+      msg: message,
+      type: type 
+    })
+    setTimeout(()=>{
+      setalert(null)
+    },(1500))
+  }
+
   const toggleMode = ()=>{
     if(mode ==='light'){
       setMode('dark')
       document.body.style.background = "#042743";
+      showAlert("Dark mode has been enabled","success")
     }
     else{
       setMode('light')
       document.body.style.background = "white";
+      showAlert("Light mode has been enabled","success")
     }
   }
   return (
@@ -22,8 +36,9 @@ function App() {
     {/* <Navbar />
     <Navbar title= "TextUtils"  aboutText="About us"/> */}
 <Navbar title= "TextUtils" mode={mode} toggleMode={toggleMode}/>
+<Alert alert={alert}></Alert>
 <div className="container my-3">
-<TextForm heading="Enter the text to analyze below" mode={mode} />
+<TextForm showAlert={showAlert} heading="Enter the text to analyze below" mode={mode} />
 {/* <About></About> */}
 </div>
 

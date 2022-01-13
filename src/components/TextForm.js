@@ -6,11 +6,13 @@ export default function TextForm(props) {
         //console.log("Uppercase was Clicked")
         let newText = text.toUpperCase()
         setText(newText)
+        props.showAlert("Converted to Uppercase! ","success")
     }
     const handleLoClick=()=>{
        // console.log("Lowercase was Clicked")
         let newText = text.toLowerCase()
         setText(newText)
+        props.showAlert("Converted to Lowercase! ","success")
     }
     const handleOnChange=(event)=>{
         //console.log("OnChange was Clicked")
@@ -19,24 +21,28 @@ export default function TextForm(props) {
     const handleClearClick=()=>{
         let newText = ""
         setText(newText)
+        props.showAlert("Text cleared! ","success")
     }
     const handleCopyClick = () =>{
         var text = document.getElementById("myBox");
         text.select();
         text.setSelectionRange(0,9999);
         navigator.clipboard.writeText(text.value);
+        props.showAlert("Copied to Clipboard! ","success")
     }
     const handleExtraSpaces = ()=>{
         let newText = text.split(/[ ]+/);
         setText(newText.join(" "))
+        props.showAlert("Removed Extra Space! ","success")
     }
     const handleCapClick = () =>{
         const text1 = text.split(/[ ]+/);
         for (var i = 0; i < text1.length; i++) {
-            text1[i] = text1[i].charAt(0).toUpperCase() + text1[i].slice(1);
+            text1[i] = text1[i].charAt(0).toUpperCase() + text1[i].slice(1).toLowerCase();
         }
         const newText = text1.join(" ");
         setText(newText)
+        props.showAlert("Text has been Capitalized! ","success")
     }
     return (
         <>

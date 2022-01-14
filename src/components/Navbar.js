@@ -12,7 +12,7 @@ export default function Navbar(props) {
   
     <div className="collapse navbar-collapse" id="navbarSupportedContent">
       <ul className="navbar-nav mr-auto">
-        <li className="nav-item active">
+        <li className="nav-item">
           <Link className="nav-link" to="/">Home <span className="sr-only">(current)</span></Link>
         </li>
         <li className="nav-item">
@@ -20,12 +20,18 @@ export default function Navbar(props) {
         </li>
         
       </ul>
+      {/* <div className="d-flex">
+        <div className="bg-primary rounded mx-2" onClick={()=>{props.toggleMode('primary')}} style={{height:'20px',width:'20px',cursor: 'pointer'}}></div>
+        <div className="bg-danger rounded mx-2" onClick={()=>{props.toggleMode('danger')}} style={{height:'20px',width:'20px',cursor: 'pointer'}}></div>
+        <div className="bg-success rounded mx-2" onClick={()=>{props.toggleMode('success')}} style={{height:'20px',width:'20px',cursor: 'pointer'}}></div>
+        <div className="bg-warning rounded mx-2" onClick={()=>{props.toggleMode('warning')}} style={{height:'20px',width:'20px',cursor: 'pointer'}}></div>
+      </div> */}
       {/* <form className="form-inline my-2 my-lg-0">
         <input className="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search"/>
         <button className="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
       </form> */}
-              <div className={`form-check form-switch text-${props.mode==='light'?'dark':'light'}`}>
-          <input className="form-check-input" type="checkbox" onClick={props.toggleMode} id="flexSwitchCheckDefault"/>
+              <div  className={`form-check form-switch text-${props.mode==='light'?'dark':'light'}`}>
+          <input className="form-check-input" onClick={()=>{props.toggleMode(null)}} type="checkbox" onClick={props.toggleMode} id="flexSwitchCheckDefault"/>
           <label className="form-check-label " htmlFor="flexSwitchCheckDefault">Enable DarkMode</label>
         </div>
     </div>

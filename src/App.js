@@ -7,8 +7,7 @@ import React,{useState} from 'react';
 import Alert from './components/Alert';
 import {BrowserRouter as Router,
   Switch,
-  Route,
-  Link
+  Route
 } from "react-router-dom";
 
 function App() {
@@ -22,10 +21,20 @@ function App() {
     setTimeout(()=>{
       setalert(null)
     },(1500))
-  }
+  } 
+  const removeBodyClasses=()=>{
+    document.body.classList.remove('bg-light')
+    document.body.classList.remove('bg-dark')
+    document.body.classList.remove('bg-warning')
+    document.body.classList.remove('bg-danger')
+    document.body.classList.remove('bg-success')
 
-  const toggleMode = ()=>{
+  }
+  const toggleMode = (cls)=>{
+    // removeBodyClasses();
+    // document.body.classList.add('bg-'+cls)
     if(mode ==='light'){
+     
       setMode('dark')
       document.body.style.background = "#042743";
       showAlert("Dark mode has been enabled","success")
@@ -48,10 +57,10 @@ function App() {
 <div className="container my-3">
 <Switch>
           <Route exact path="/about">
-            <About />
+            <About mode = {mode} />
           </Route>
           <Route exact path="/">
-  <TextForm showAlert={showAlert} heading="Enter the text to analyze below" mode={mode} />
+  <TextForm showAlert={showAlert} heading="TextUtils - Word Counter, Character Counter, Remove Extra Spaces" mode={mode} />
   </Route>
   </Switch>
 </div>
